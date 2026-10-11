@@ -718,7 +718,7 @@ void BrowseHome::drawInfoPanel(float k)
     char meta[160] = "";
     if (it.type == "CollectionFolder") {
         const std::string& t = it.seriesName;
-        snprintf(meta, sizeof(meta), "%s library  \xc2\xb7  open it with A",
+        snprintf(meta, sizeof(meta), "%s library  \xc2\xb7  Open with A",
                  t == "movies" ? "Movie" : t == "tvshows" ? "TV" : t == "music" ? "Music"
                  : t == "boxsets" ? "Collection" : "Media");
     } else if (it.type == "Series") {
@@ -752,7 +752,7 @@ void BrowseHome::drawInfoPanel(float k)
     if (it.playbackPositionTicks > 0 && it.runtimeTicks > 0) {
         int left = (int)((it.runtimeTicks - it.playbackPositionTicks) / 600000000LL);
         size_t l = strlen(meta);
-        if (left > 0) snprintf(meta + l, sizeof(meta) - l, "%s%d min left", l ? "   \xc2\xb7   " : "", left);
+        if (left > 0) snprintf(meta + l, sizeof(meta) - l, "%s%d mins left", l ? "   \xc2\xb7   " : "", left);
     }
     if (meta[0]) {
         std::string m = fit(meta, 14, (int)(INFO_X + INFO_W - 16 - x));
@@ -866,7 +866,6 @@ void BrowseHome::render(const ir_t& ir)
         float w = 0;
         for (int i = 0; i < 3; ++i) w += Ui::hintWidth(h[i]);
         float x = Ui::screenRight() - 14 - w;
-        for (int i = 0; i < 3; ++i) x += Ui::hint(x, 454, h[i]);
     }
 
     drawHeader();
